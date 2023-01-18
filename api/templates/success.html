@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Success{% endblock %}
+{% block content %}
+
+<script src="{{ url_for('static', filename="js/clipboard.min.js") }}"></script>
+
+<script>
+    var clipboard = new ClipboardJS(".btn");
+    clipboard.on("error", function(e) {console.log(e);});
+</script>
+
+<div class="content">
+  <h2>Here is your Tiny URL!</h2>
+
+  <div class="input">
+    <a class="btn btn__copy" data-clipboard-text='{{ url_for('index', _external=True) }}{{ url.short_url }}'>Copy</a>
+    <input type="text" value="{{ url_for('index', _external=True) }}{{ url.short_url }}" />
+
+  </div>
+  <div class="original-link">Redirects to:
+    {{ url.long_url }}
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename="js/main.js") }}"></script>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Tiny URL" />
+    <meta name="og:title" property="og:title" content="Tiny URL" />
+    <meta property="og:description" content="Tiny URL" />
+    <title>{% block title %}{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Muli:400,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>
+        <a class="links" href="{{ url_for('index') }}">Tiny URL</a>
+        <span style="float:right;">
+          <a class="links" href="{{ url_for('stats') }}">Stats</a>
+        </span>
+      </h1>
+      {% block content %} {% endblock %}
+    </div>
+
+    <footer><p class="footer"></p></footer>
+  </body>
+</html>

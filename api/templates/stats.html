@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}All Submissions{% endblock %}
+{%block content %}
+
+<div class="content">
+  <table class="table">
+    <tr>
+      <th class="th-1">Tiny URL</th>
+      <th>Long URL</th>
+      <th class="th-3">Clicks</th>
+    </tr>
+    {% for url in stats %}
+    <tr>
+      <td>
+        <a href="{{ url_for('index') }}{{ url.short_url }}" target="_blank">
+          {{ url.short_url }}
+        </a>
+      </td>
+      <td class="long-url">
+        {{ url.long_url }}
+      </td>
+      <td class="td-3">
+        {{ url.clicks }}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div style="text-align: center; padding-top: 5px; font-weight: 600;">
+  <p style="color:#777">
+    {% if stats.has_prev %}
+    <a href="{{url_for('stats',page=stats.prev_num)}}">&lt;&lt; Previous</a>
+    {% else %} &lt;&lt; Previous {% endif %} {% if stats.has_next %}
+    <a href="{{url_for('stats',page=stats.next_num)}}">Next &gt;&gt;</a>
+    {% else %} Next &gt;&gt; {% endif %}
+  </p>
+</div>
+
+{% endblock %}
